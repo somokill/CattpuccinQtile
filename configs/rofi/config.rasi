@@ -1,0 +1,85 @@
+/* Dark theme. */
+@import "~/.config/rofi/colors-rofi-dark"
+
+* {
+  font: "JetBrainsMono Nerd Font 11";
+  backgound-color: transparent;
+  margin: 0px;
+  padding: 0px;
+  spacing: 0px;
+}
+
+window {
+  location: center;
+  anchor: center;
+  border-radius: 0px;
+  width: 700px;
+  border: 3px;
+}
+
+mainbox {
+  padding: 50px;
+}
+
+inputbar {
+    border-radius:  30px;
+    padding:    0px 0px;
+    spacing:    10px;
+    children:   [ prompt, entry ];
+}
+
+prompt {
+    border-radius:      5px;
+    padding:            16px 16px;
+}
+
+entry {
+    border-radius:      5px;
+    placeholder:        "";
+    padding:            16px 16px;
+}
+
+
+message {
+    margin:             12px 0 0;
+    border-radius:      20px;
+}
+
+textbox {
+    padding:    8px 24px;
+}
+
+listview {
+    background-color:   transparent;
+
+    margin:     30px 20px 0;
+    lines:      6;
+    columns:    2;
+
+    fixed-height: false;
+}
+
+element {
+    padding:        8px 12px;
+    spacing:        8px;
+    border-radius:  20px;
+}
+
+element-icon {
+    size:           1.3em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: inherit;
+}
+
+configuration {
+  modi: "drun,run,window";
+    show-icons: false;
+    display-drun: "  Apps";
+    display-run: "  Run";
+    display-window: "  Windows";
+  drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  window-format: "{w} · {c} · {t}";
+}

@@ -1,0 +1,21 @@
+add_newline = false
+format = """
+ $python$directory$character
+"""
+
+[character]
+success_symbol = "[](bold #babbf1)"
+error_symbol = "[](bold #babbf1)"
+vimcmd_symbol = "[](#babbf1)"
+
+[python]
+format = "[$virtualenv](bold #babbf1) "
+
+[package]
+disabled = true
+
+[line_break]
+disabled = false
+
+[directory]
+format = "[$path](fg:#babbf1 bold italic) "
