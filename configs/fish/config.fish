@@ -1,4 +1,7 @@
 if status is-interactive
+    # deno
+    export DENO_INSTALL="$HOME/.deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
     # starship
     starship init fish | source
     # path
@@ -6,6 +9,7 @@ if status is-interactive
     # default programs
     export TERMINAL=alacritty
     export TerminalEmulator=alacritty
+    export BROWSER=firefox
     # pfetch
     export PF_SEP="    "
     export EDITOR="nvim"
@@ -17,4 +21,5 @@ if status is-interactive
     alias xi="sudo xbps-install -S"
     alias xu="sudo xbps-install -Suy"
     alias gc="git clone"
+    alias hint='echo "use xi to install packages" && echo "use xu to update system" && echo "use gc to clone repositories" && echo "use terminal all the time"'
 end

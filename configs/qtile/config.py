@@ -1,23 +1,12 @@
 from os import path
 from libqtile import hook, bar, widget, qtile
 from libqtile.layout.floating import Floating
-from libqtile.layout.spiral import Spiral
+# from libqtile.layout.spiral import Spiral
 from libqtile.layout.bsp import Bsp
-from libqtile.layout.columns import Columns
-from libqtile.layout.matrix import Matrix
-from libqtile.layout.ratiotile import RatioTile
-from libqtile.layout.stack import Stack
-from libqtile.layout.tile import Tile
-from libqtile.layout.verticaltile import VerticalTile
 from qtile_extras.widget.decorations import RectDecoration
 from qtile_extras import widget
 from libqtile.config import Group, Key, Match, Screen, Drag, Click
 from libqtile.lazy import lazy
-
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from typing import Any
-    from libqtile.core.manager import Qtile
 
 menu = "rofi -show drun"
 power_menu = "rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu -config ~/.config/rofi/config.rasi"
@@ -66,9 +55,9 @@ keys = [
     # Keyboard
     Key(["shift"], "Alt_L", lazy.widget["keyboardlayout"].next_keyboard()),
     # Volume
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset 'Master' 2%+")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset 'Master' 2%-")),
-    Key([], "XF86AudioMute", lazy.spawn("amixer sset 'Master' toggle")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset 'PCM' 1%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset 'PCM' 1%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer sset 'PCM' 0%")),
     Key([mod], "XF86AudioRaiseVolume", lazy.spawn("cmus-remote --next")),
     Key([mod], "XF86AudioLowerVolume", lazy.spawn("cmus-remote --prev")),
     Key([mod], "XF86AudioMute", lazy.spawn("cmus-remote --pause")),
@@ -192,18 +181,18 @@ screens = [
                 widget.TextBox("󰤄", fontsize=15, foreground="#414559", mouse_callbacks={"Button1":lazy.spawn(power_menu)}, **powermenu),
                 widget.Spacer(length=3),
                 widget.CheckUpdates(distro="Void", display_format="  {updates} ups", no_update_string="  0 ups", colour_have_updates="#babbf1", colour_no_updates="#babbf1", update_interval=300, **rect),
-                widget.Cmus(play_icon="", noplay_color="#babbf1", play_color="#babbf1", fmt='  {}', **rect),
+                # widget.Cmus(play_icon="", noplay_color="#babbf1", play_color="#babbf1", fmt='  {}', **rect),
                 widget.Spacer(),
                 widget.OpenWeather(location="Magnitogorsk", api_key="aa5002a95c1e9f3e666d54f7ea42313e", metric=True, format="  {temp:.0f}°{units_temperature}", **rect),
                 widget.Clock(foreground="#414559", format="󱑓  %H:%M, %b (%d)", **clock),
                 widget.GroupBox(active="#737994", this_current_screen_border="#babbf1", borderwidth=0, margin_x=10, fontshadow=None, disable_drag=True, fontsize=11, highlight_method="text", padding_x=5, padding_y=2, hide_unused=True, **rect_groupbox),
                 widget.Spacer(),
                 widget.KeyboardLayout(configured_keyboards=["us", "ru"], fmt='  {}', display_map={"us": "us", "ru": "ru"}, **rect),
-                widget.Volume(step=5, fmt='  {}', **rect),
+                widget.Volume(get_volume_command="amixer sget 'PCM'", mute_command="amixer sset 'PCM' 0%", volume_down_command="amixer sset 'PCM' 1%-", volume_up_command="amixer sset 'PCM' 1%+", step=1, fmt='  {}', **rect),
                 widget.Spacer(length=3),
                 widget.WidgetBox(foreground="#414559", widgets=[widget.Systray(foreground="#414559", icon_size=13, **rect_systray)], close_button_location='left', fontsize=24 ,text_closed=' 󰍟', text_open='󰍞', **rect_g),
                 widget.Spacer(length=6),
-                widget.TextBox("", fontsize=15, foreground="#414559", mouse_callbacks={"Button1":lazy.spawn("github-desktop")}, **github),
+                widget.TextBox("", fontsize=15, foreground="#414559", mouse_callbacks={"Button1":lazy.spawn("alacritty --command CattpuccinQtile/")}, **github),
                 widget.Spacer(length=6),
             ],
             40, # Bar height
@@ -248,4 +237,4 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
 wl_input_rules = None
-wmname = "Qtile"
+wmname = "Ebaniy Qtile"
